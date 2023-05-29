@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Alexflix</string>
+    <string name="menu_mensagem">Menu</string>
+    <string name="menu_volume">Menu volume\n</string>
+    <string name="menu_avaliacao">Menu avaliações\n</string>
+    <string name="menu_espisodios">Menu episódios</string>
+    <string name="ep">S1:E2</string>
+    <string name="house_of_cards">House of Cards</string>
 </resources>
