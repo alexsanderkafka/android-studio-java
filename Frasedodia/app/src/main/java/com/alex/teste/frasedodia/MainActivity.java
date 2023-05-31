@@ -15,5 +15,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    
+
+    public void gerarNovaFrase(View view){
+
+        new Random();
+
+        String[] frases = {
+                "Esse texto era uma frase do dia.",
+                "",
+                "Frase 3",
+                "Frase 4",
+                "Frase 5"
+        };
+
+        int ale = new Random().nextInt(5);
+
+        TextView texto = findViewById(R.id.textResultado);
+        texto.setText(frases[ale]);
+    }
 }
