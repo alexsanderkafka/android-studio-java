@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.alex.teste.oop.classes.Conta;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -23,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
         double salBonus = fun.bonus(1000);
         System.out.println(salBonus);
-         */
 
         // Animal animal = new Animal("Vermelho", 1.20, 30);
 
@@ -43,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
 
         cao.setCor("Azul");
         System.out.println(cao.getCor());
+         */
+
+        Conta conta = new Conta(123213, 100);
+        conta.depositar(100);
+        conta.sacar(50);
+
+        System.out.println(conta.getSaldo());
+
+
 
     }
 }
