@@ -13,15 +13,36 @@ public class MainActivity extends AppCompatActivity {
 
         /*
         Casa cs = new Casa();
-        cs.openDoor();*/
+        cs.openDoor();
 
         Funcionario fun = new Funcionario("Alexsander", 1000);
 
-        // fun.recuperaSal();
+        fun.recuperaSal();
 
         System.out.println(fun.somaSal());
 
         double salBonus = fun.bonus(1000);
         System.out.println(salBonus);
+         */
+
+        // Animal animal = new Animal("Vermelho", 1.20, 30);
+
+        Cao cao = new Cao("Vermelho", 1.20, 30.0);
+        cao.dormir();
+        cao.correr();
+
+        Passaro passaro = new Passaro("Vermelho", 1.20, 30.0);
+        passaro.dormir();
+        passaro.correr();
+
+        System.out.println(cao.getTamanho());
+        System.out.println(passaro.getCor());
+
+        cao.latir();
+        passaro.voar();
+
+        cao.setCor("Azul");
+        System.out.println(cao.getCor());
+
     }
 }
