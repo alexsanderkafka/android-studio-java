@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +30,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void opcaoSelecionada(String opcaoSelecionada){
+
+        ImageView imgTela = findViewById(R.id.telaResult);
         TextView texto = findViewById(R.id.textResult);
-        texto.setText(opcaoSelecionada);
+
+        int numero = new Random().nextInt(3);
+        String[] opcoes = {"pedra", "papel", "tesoura"};
+        String opcaoApp = opcoes[numero];
+
+        switch (opcaoApp){
+            case "pedra":
+                imgTela.setImageResource(R.drawable.pedra);
+                break;
+            case "papel":
+                imgTela.setImageResource(R.drawable.papel);
+                break;
+            case "tesoura":
+                imgTela.setImageResource(R.drawable.tesoura);
+                break;
+        }
+
     }
 }
