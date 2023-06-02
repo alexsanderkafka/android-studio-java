@@ -10,6 +10,6 @@ public class Pessoa {
     }
 
     public void exibirDados(String nome, int idade){
-        System.out.println("nome: " + nome + "\nidade: " + idade);
+        System.out.println("nome: " + nome + "\n idade: " + idade);
     }
 }
