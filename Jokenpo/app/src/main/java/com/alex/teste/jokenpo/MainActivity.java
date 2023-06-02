@@ -50,5 +50,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+        if((opcaoApp == "pedra" && opcaoSelecionada == "tesoura") || (opcaoApp == "papel" && opcaoSelecionada == "pedra") || (opcaoApp == "tesoura" && opcaoSelecionada == "papel")){
+            texto.setText("Você perdeu!!!");
+        }
+        else if ((opcaoApp == "pedra" && opcaoSelecionada == "papel") || (opcaoApp == "papel" && opcaoSelecionada == "tesoura") || (opcaoApp == "tesoura" && opcaoSelecionada == "pedra")) {
+            texto.setText("Você ganhou!!!");
+        }
+        else{
+            texto.setText("Empate!!!");
+        }
+
     }
 }
