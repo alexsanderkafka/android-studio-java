@@ -44,15 +44,19 @@ public class MainActivity extends AppCompatActivity {
 
         cao.setCor("Azul");
         System.out.println(cao.getCor());
-         */
+
 
         Conta conta = new Conta(123213, 100);
         conta.depositar(100);
         conta.sacar(50);
 
         System.out.println(conta.getSaldo());
+        */
 
+        Pessoa pessoa = new Pessoa();
+        pessoa.exibirDados("Maria");
 
+        pessoa.exibirDados("Maria", 22);
 
     }
 }
