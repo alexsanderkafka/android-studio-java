@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -17,7 +19,10 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText emailText;
     private TextView textView;
     private CheckBox checkVerde, checkBranco, checkVermelho;
+    private RadioButton sexoMasculino, sexoFemenino;
+    private RadioGroup opcaoSexo;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         checkVerde = findViewById(R.id.checkVerde);
         checkBranco = findViewById(R.id.checkBranco);
         checkVermelho = findViewById(R.id.checkVermelho);
+
+        sexoMasculino = findViewById(R.id.sexoMasc);
+        sexoFemenino = findViewById(R.id.sexoFemi);
+
+        opcaoSexo = findViewById(R.id.sexo);
+        radioButton();
     }
 
     @SuppressLint("SetTextI18n")
@@ -52,6 +63,31 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(texto);
     }
 
+    @SuppressLint("SetTextI18n")
+    public void radioButton(){
+
+        /*
+        if(sexoMasculino.isChecked()){
+            textView.setText("Masculino");
+        }
+        else if (sexoFemenino.isChecked()){
+            textView.setText("Femenino");
+        }*/
+
+        opcaoSexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.sexoMasc){
+                    textView.setText("Masculino");
+                }else if (checkedId == R.id.sexoFemi){
+                    textView.setText("Femenino");
+                }
+            }
+        });
+
+    }
+
+
     public void enviar(View view){
         /*
         String nome = nomeText.getText().toString();
@@ -60,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
         textView.setText("Nome: " + nome + "--- Email: " + email);
          */
 
-        checbox();
+        // checbox();
+        // radioButton();
 
     }
 
