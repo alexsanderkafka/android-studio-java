@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">App Gas station</string>
+    <string name="caixa_de_texto">Saiba a melhor opção de abstecimento do seu carro!</string>
+    <string name="button_enviar">ENVIAR</string>
+    <string name="button_calcular">CALCULAR\n</string>
+    <string name="melhor_gasolina">Melhor gasolina</string>
+    <string name="texto_alcool">Preço alcool ex: 1.90</string>
+    <string name="preco_gasolina">Preço gasolina ex: 2.60</string>
+    <string name="resultado">Resultado</string>
 </resources>
