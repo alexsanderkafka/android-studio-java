@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Calculadora de gorjeta</string>
+    <string name="text_gorjeta">Gorjeta\n</string>
+    <string name="text_ex">Digite o valor da conta ex: 36.50</string>
+    <string name="text_porcentagem">0%\n</string>
+    <string name="text_valor1">R$ 0.00</string>
+</resources>
