@@ -24,12 +24,6 @@
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.kafka.teste.navigariondrawer.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
         android:id="@+id/nav_share"
         android:name="com.kafka.teste.navigariondrawer.ui.share.ShareFragment"
         android:label="@string/menu_share"
@@ -40,4 +34,10 @@
         android:name="com.kafka.teste.navigariondrawer.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_contato"
+        android:name="com.kafka.teste.navigariondrawer.ui.contato.ContatoFragment"
+        android:label="@string/menu_contato"
+        tools:layout="@layout/fragment_contato" />
 </navigation>
