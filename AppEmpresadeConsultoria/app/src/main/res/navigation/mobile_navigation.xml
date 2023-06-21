@@ -3,35 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_principal">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_principal"
         android:name="com.kafka.teste.appempresadeconsultoria.ui.principal.PrincipalFragment"
         android:label="@string/menu_principal"
         tools:layout="@layout/fragment_principal" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_servico"
         android:name="com.kafka.teste.appempresadeconsultoria.ui.servico.ServicoFragment"
         android:label="@string/menu_servico"
         tools:layout="@layout/fragment_servico" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.kafka.teste.appempresadeconsultoria.ui.cliente.ClienteshowFragment"
+        android:id="@+id/nav_clientes"
+        android:name="com.kafka.teste.appempresadeconsultoria.ui.cliente.ClienteFragment"
         android:label="@string/menu_clientes"
-        tools:layout="@layout/fragment_clientes" />
+        tools:layout="@layout/fragment_cliente" />
 
 
     <fragment
-        android:id="@+id/nav_share"
+        android:id="@+id/nav_contato"
         android:name="com.kafka.teste.appempresadeconsultoria.ui.contato.ContatoFragment"
         android:label="@string/menu_contato"
         tools:layout="@layout/fragment_contato" />
 
     <fragment
-        android:id="@+id/nav_send"
+        android:id="@+id/nav_sobre"
         android:name="com.kafka.teste.appempresadeconsultoria.ui.sobre.SobreFragment"
         android:label="@string/menu_sobre"
         tools:layout="@layout/fragment_sobre" />

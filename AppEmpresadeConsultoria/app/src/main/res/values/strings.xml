@@ -15,4 +15,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="titulo1_servico">Sistema de gestão de qualidade</string>
+    <string name="text_servico">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum iaculis, dui nec accumsan facilisis, metus risus ultrices velit, ut dapibus tellus elit vitae dui. Curabitur blandit orci eleifend nunc varius, sit amet accumsan sem vehicula. Nunc non nisi in ipsum imperdiet porta ultrices sit amet tellus. Pellentesque at lectus quis est ullamcorper feugiat. Nunc ac urna a odio volutpat elementum. Sed a libero varius, consectetur ex eu, blandit elit. Praesent egestas sit amet enim sed pellentesque. Etiam laoreet ut urna sed tincidunt. Vestibulum id imperdiet lorem. Praesent egestas nisl a velit aliquam, ut varius mi feugiat. Nunc condimentum felis sollicitudin nulla vehicula consectetur.</string>
+    <string name="titulo2_servico">Indicadores de desempenho</string>
+    <string name="titulo_cliente">Clientes</string>
+    <string name="text_cliente">Em mais de 15 anos de ecistência a ATM acumula experiência em serviçoes de consultoria para empresas nacionais e multinacionais de diversos portes, tendo atendido mais de 1000 empresas desde sua abertura.</string>
 </resources>
