@@ -1,5 +1,7 @@
 package com.kafka.teste.appempresadeconsultoria;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                enviarEmail();
             }
         });
 
@@ -59,6 +60,29 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    public void enviarEmail(){
+        String celular = "tel:11997632995";
+        String imagem = "https://spacetoday.com.br/wp-content/uploads/2023/01/textura_lua_01.jpg";
+        String endereco = "https://www.google.com.br/maps/place/Parque+Estadual+da+Ilha+Anchieta/@-23.5499993,-45.0769882,15z/data=!3m1!4b1!4m6!3m5!1s0x94cd55faf39ae6e7:0x52ec58d54508a680!8m2!3d-23.55!4d-45.066667!16s%2Fg%2F1hb_d_gnz?entry=ttu";
+        //Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(celular));
+        //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(imagem));
+        //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(endereco));
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"atendimento@atmconsultoria.com.br"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Contato pelo App");
+        //intent.putExtra(Intent.EXTRA_TEXT, "Mensagem automática");
+
+        intent.setType("message/rfc822");
+        //intent.setType("text/plain");
+        //intent.setType("image/*");
+        //intent.setType("application/pdf");
+
+        startActivity(Intent.createChooser(intent, "Compartilhar"));
+
     }
 
 
