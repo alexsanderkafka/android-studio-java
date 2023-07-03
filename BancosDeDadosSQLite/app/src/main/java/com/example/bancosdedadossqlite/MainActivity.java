@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
               String filtro = "Si";
               String consulta = "SELECT nome, idade FROM pessoas " +
-                              "WHERE nome LIKE '%" + filtro + "%' ";*/
+                              "WHERE nome LIKE '%" + filtro + "%'  ";*/
 
             String consulta = "SELECT nome, idade FROM pessoas " +
                               "WHERE 1=1 ORDER BY idade ASC LIMIT 3"; //ASC ou DESC
