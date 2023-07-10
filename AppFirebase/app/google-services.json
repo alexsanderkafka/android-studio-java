@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "979760427315",
+    "firebase_url": "https://teste-1-90b94-default-rtdb.firebaseio.com",
+    "project_id": "teste-1-90b94",
+    "storage_bucket": "teste-1-90b94.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979760427315:android:74b9f9e1ed29ad86e94e46",
+        "android_client_info": {
+          "package_name": "com.example.kafkatech.appfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979760427315-tm0cc1l5l9gse2e29ffoqe7f5mpro1tl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kafkatech.appfirebase",
+            "certificate_hash": "799990c7063ba73e983cc43de6a0c39269dc0a06"
+          }
+        },
+        {
+          "client_id": "979760427315-4cgrctk3iupvu8fcqcqqujtppeh6dj3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF8l67KXGr5--zYV62d0aLKAhW-7xZBDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979760427315-4cgrctk3iupvu8fcqcqqujtppeh6dj3d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
