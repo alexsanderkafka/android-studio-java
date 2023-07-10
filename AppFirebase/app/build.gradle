@@ -46,4 +46,7 @@ dependencies {
 
     //firebase database
     implementation 'com.google.firebase:firebase-database:11.0.4' //11.0.4
+
+    //Authentication
+    implementation'com.google.firebase:firebase-auth'
 }

@@ -6,6 +6,12 @@ public class Usuario {
     private String sobreNome;
     private int idade;
 
+    public Usuario(String nome, String sobreNome, int idade) {
+        this.nome = nome;
+        this.sobreNome = sobreNome;
+        this.idade = idade;
+    }
+
     public Usuario() {
     }
 
