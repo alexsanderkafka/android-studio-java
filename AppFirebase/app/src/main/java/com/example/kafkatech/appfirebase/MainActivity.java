@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Firebase Authentication
+        /*//Firebase Authentication
         //Cadastro de usuario
         auth.createUserWithEmailAndPassword(
                 "alex2@gmail.com", "al12345")
@@ -98,6 +98,13 @@ public class MainActivity extends AppCompatActivity {
                             Log.i("signIn", "Erro ao logar usuario!");
                         }
                     }
-                });
+                });*/
+
+        Usuario usuario = new Usuario();
+        usuario.setNome("Maria");
+        usuario.setSobreNome("Alves");
+        usuario.setIdade(38);
+
+        usuarios.push().setValue(usuario);
     }
 }
