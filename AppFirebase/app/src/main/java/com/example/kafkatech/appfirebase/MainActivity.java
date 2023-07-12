@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*Firebase Authentication
-        Cadastro de usuario
+        //Firebase Authentication
+        //Cadastro de usuario
         auth.createUserWithEmailAndPassword(
                 "alex2@gmail.com", "al12345")
                 .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
@@ -72,16 +72,32 @@ public class MainActivity extends AppCompatActivity {
                             Log.i("CreateUser", "Erro ao cadastrar usuario!");
                         }
                     }
-                });*/
+                });
+
+        //Desloga usuario
+        //auth.signOut();
 
         //Verifica o cadastro do usuario
         if (auth.getCurrentUser() != null){
-            Log.i("CreateUser", "Usuario logado!");
+            Log.i("CurrentUse", "Usuario logado!");
         }
         else{
-            Log.i("CreateUser", "Usuario nao logado!");
-        }
+            Log.i("CurrentUse", "Usuario nao logado!");
+        };
 
-
+        //Logar Usuario
+        auth.signInWithEmailAndPassword(
+                "alex2@gmail.com", "al12345")
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Log.i("signIn", "Sucesso ao logar usuario!");
+                        }
+                        else {
+                            Log.i("signIn", "Erro ao logar usuario!");
+                        }
+                    }
+                });
     }
 }
