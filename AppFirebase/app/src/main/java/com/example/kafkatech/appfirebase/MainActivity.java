@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         usuarios.addValueEventListener(new ValueEventListener() { //pode usar antes o child()
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("FIREBASE", snapshot.getValue().toString());
+                //Log.i("FIREBASE", snapshot.getValue().toString());
             }
 
             @Override
@@ -99,12 +100,31 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });*/
-
+        /*salva user
         Usuario usuario = new Usuario();
-        usuario.setNome("Maria");
-        usuario.setSobreNome("Alves");
-        usuario.setIdade(38);
+        usuario.setNome("Rodrigo");
+        usuario.setSobreNome("Matos");
+        usuario.setIdade(35);
 
-        usuarios.push().setValue(usuario);
+        usuarios.push().setValue(usuario);*/
+
+        //Filtro de usuarios
+        //DatabaseReference usuarioPesquisa = usuarios.child("-N_AlFzYFKvmcD4E0AIY");
+        //Query usuarioPesquisa = usuarios.orderByChild("nome").equalTo("Maria");
+        //Query usuarioPesquisa = usuarios.orderByKey().limitToFirst(2);
+        Query usuarioPesquisa = usuarios.orderByKey().limitToLast(2);
+
+        usuarioPesquisa.addValueEventListener(new ValueEventListener() { //pode usar antes o child()
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                /*Usuario dadosUsuario = snapshot.getValue(Usuario.class);
+                Log.i("Dados usuario", " nome: " + dadosUsuario.getNome() + " idade: " + dadosUsuario.getIdade());*/
+                Log.i("Dados usuario", snapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }
