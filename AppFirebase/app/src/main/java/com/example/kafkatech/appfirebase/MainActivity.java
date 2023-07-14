@@ -3,10 +3,19 @@ package com.example.kafkatech.appfirebase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,16 +25,103 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth auth = FirebaseAuth.getInstance();
 
+    private ImageView imageView;
+    private Button buttonUpload;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        imageView = findViewById(R.id.imageFoto);
+        buttonUpload = findViewById(R.id.buttonUpload);
+
+        buttonUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Configura para imagem ser salva em memória
+                imageView.setDrawingCacheEnabled(true);
+                imageView.buildDrawingCache();
+
+                //Recupera bitmap da imagem
+                Bitmap bitmap = imageView.getDrawingCache();
+
+                //Comprime bitmap para um formato png/jpeg
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 75, baos);
+
+                //converte o baos para pixel brutos em uma matriz de bytes
+                byte[] dadosImagem = baos.toByteArray();
+
+                //Defini nós para o storage
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+                StorageReference imagens = storageReference.child("imagens");
+                StorageReference imagemRef = imagens.child("celular.jpeg");
+
+                /*/Nome da imagem
+                String nomeArquivo = UUID.randomUUID().toString();
+                //StorageReference imagemRef = imagens.child(nomeArquivo + ".jpeg");
+
+                //Retorna objeto que irá controlar o upload
+                UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
+
+                uploadTask.addOnFailureListener(MainActivity.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this,
+                                "Upload da imagem falhou: " + e.getMessage(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                }).addOnSuccessListener(MainActivity.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        imagemRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                Uri url = task.getResult();
+                                Toast.makeText(MainActivity.this,
+                                        "Upload success: " + url.toString(),
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
+
+                //Exclui uma imagem do storage
+                imagemRef.delete().addOnFailureListener(MainActivity.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this,
+                                "Erro ao deletar ",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }).addOnSuccessListener(MainActivity.this, new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(MainActivity.this, "Sucessoao ao deletar", Toast.LENGTH_SHORT).show();
+                    }
+                });*/
+
+                //Dowloand do arquivo
+                Glide.with(MainActivity.this)
+                        .load(imagemRef)
+                        .into(imageView);
+            }
+        });
+
 
         //reference.child("pontos").setValue("100");
         //reference.child("usuario").child("001").child("nome").setValue("Batman");
