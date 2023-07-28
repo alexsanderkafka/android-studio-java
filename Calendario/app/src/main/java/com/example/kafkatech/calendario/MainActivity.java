@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
         calendarView.setTitleMonths(meses);
 
-        String[] dias = {"Segundo", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"};
+        String[] dias = {"Segundo", "Terça", "Quarta", "Quinta",
+                "Sexta", "Sábado", "Domingo"};
         calendarView.setWeekDayLabels(dias);
 
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
