@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
         recuperar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyAsync task = new MyAsync();
-                //String urlApi = "https://blockchain.info/ticker";
+                MyTask task = new MyTask();
+                String urlApi = "https://blockchain.info/ticker";
                 //String urlApi = "https://blockchain.info/tobtc?currency=USD&value=500";
-                String urlApi = "https://viacep.com.br/ws/01001000/json/";
+                //String urlApi = "https://viacep.com.br/ws/01001000/json/";
                 task.execute(urlApi);
             }
         });
     }
 
     @SuppressLint("StaticFieldLeak")
-    public class MyAsync extends AsyncTask<String, Void, String>{
+    public class MyTask extends AsyncTask<String, Void, String>{
 
         @Override
         protected void onPreExecute() {
@@ -84,10 +87,46 @@ public class MainActivity extends AppCompatActivity {
             return buffer.toString();
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            resultado.setText(s);
+            /*
+            String logradouro = null;
+            String cep = null;
+            String complemento = null;
+            String bairro = null;
+            String localidade = null;
+            String uf = null;*/
+
+            String objetoValor = null;
+            String valorMoeda = null;
+            String simbolo = null;
+
+            try {
+                /*
+                JSONObject json = new JSONObject(s);
+                logradouro = json.getString("logradouro");
+                cep = json.getString("cep");
+                complemento = json.getString("complemento");
+                bairro = json.getString("bairro");
+                localidade = json.getString("localidade");
+                uf = json.getString("uf");*/
+
+                JSONObject json = new JSONObject(s);
+                objetoValor = json.getString("BRL");
+
+                JSONObject jsonReal = new JSONObject(objetoValor);
+                valorMoeda = jsonReal.getString("last");
+                simbolo = jsonReal.getString("symbol");
+
+            }
+            catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+
+            //resultado.setText(logradouro + " / " + cep + " / " + bairro + " / " + complemento + " / " + localidade + " / " + uf);
+            resultado.setText(simbolo + "  " + valorMoeda);
         }
     }
 
