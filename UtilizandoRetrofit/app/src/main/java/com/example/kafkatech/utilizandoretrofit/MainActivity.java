@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         recuperar = findViewById(R.id.buttonBuscar);
         resultado = findViewById(R.id.textResultado);
+
         retrofit = new Retrofit.Builder()
                 //.baseUrl("https://viacep.com.br/ws/")
                 .baseUrl("https://jsonplaceholder.typicode.com")
@@ -52,14 +53,63 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //recuperarCepRetrofit();
                 //recuperarList();
-                salvarPost();
+                //salvarPost();
+                //atualizarUmPost();
+                deleteOnePost();
+            }
+        });
+    }
+
+    private void deleteOnePost() {
+        DataService dataService = retrofit.create(DataService.class);
+        Call<Void> call = dataService.deletePost(2);
+        call.enqueue(new Callback<Void>() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    resultado.setText("Status: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void atualizarUmPost() {
+        Post post = new Post("1234", null, "Corpo postagem");
+        //Post post = new Post();
+        //post.setBody("Corpo da postagem alterado");
+
+        DataService dataService = retrofit.create(DataService.class);
+        //Call<Post> call = dataService.atualizarPost(2, post);
+        Call<Post> call = dataService.atualizarPostWithPatch(2, post);
+        call.enqueue(new Callback<Post>() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if(response.isSuccessful()){
+                    Post postReposta = response.body();
+                    resultado.setText("Status: " + response.code()+
+                            " id: " + postReposta.getId() +
+                            " userId: " + postReposta.getUserId() +
+                            " titulo: " + postReposta.getTitle() +
+                            " body: " + postReposta.getBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+
             }
         });
     }
 
     private void salvarPost() {
-       //Post post = new Post("1234", "Título postagem", "Corpo postagem");
-
+        //Post post = new Post("1234", "Título postagem", "Corpo postagem");
         DataService dataService = retrofit.create(DataService.class);
         Call<Post> call = dataService.salvarUmaPostagem("1234", "Título postagem", "Corpo postagem");
 
@@ -84,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void recuperarList(){
         DataService dataService = retrofit.create(DataService.class);
+        //DataService dataService = retrofit.create(DataService.class);
         /*Call<List<Photo>> call = dataService.recuperarFotos();
         call.enqueue(new Callback<List<Photo>>() {
             @Override
@@ -101,9 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Photo>> call, Throwable t) {
-
-            }
-        });*/
+         */
 
         Call<List<Post>> call = dataService.recuperarPostagens();
         call.enqueue(new Callback<List<Post>>() {
