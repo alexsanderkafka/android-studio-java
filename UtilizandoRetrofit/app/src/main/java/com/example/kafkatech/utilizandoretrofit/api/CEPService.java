@@ -4,9 +4,10 @@ import com.example.kafkatech.utilizandoretrofit.model.CEP;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface CEPService {
-    @GET("01001000/json/")
-    public Call<CEP> recuperarCEP();
 
+    @GET("{cep}/json/")
+    public Call<CEP> recuperarCep(@Path("cep") String cep);
 }
