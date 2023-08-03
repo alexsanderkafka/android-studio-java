@@ -3,6 +3,7 @@ package com.example.kafkatech.utilizandoretrofit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,7 +51,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //recuperarCepRetrofit();
-                recuperarList();
+                //recuperarList();
+                salvarPost();
+            }
+        });
+    }
+
+    private void salvarPost() {
+       //Post post = new Post("1234", "Título postagem", "Corpo postagem");
+
+        DataService dataService = retrofit.create(DataService.class);
+        Call<Post> call = dataService.salvarUmaPostagem("1234", "Título postagem", "Corpo postagem");
+
+        call.enqueue(new Callback<Post>() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if(response.isSuccessful()){
+                    Post postReposta = response.body();
+                    resultado.setText("Código: " + response.code()+
+                                      " id: " + postReposta.getId() +
+                                      " titulo: " + postReposta.getTitle());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+
             }
         });
     }
