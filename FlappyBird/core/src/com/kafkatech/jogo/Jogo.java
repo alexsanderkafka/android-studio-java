@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.util.Random;
+
 public class Jogo extends ApplicationAdapter {
 
 	//Texturas
@@ -24,6 +26,7 @@ public class Jogo extends ApplicationAdapter {
 	private float posicaoCanoX;
 	private float posicaoCanoY;
 	private float espacoEntreCanos;
+	private Random random;
 
 
 	@Override
@@ -43,6 +46,12 @@ public class Jogo extends ApplicationAdapter {
 
 	private void verificarEstadoJodo(){
 
+		/*Movimenta o cano*/
+		posicaoCanoX -= Gdx.graphics.getDeltaTime() * 200;
+		if(posicaoCanoX < -canoBaixo.getWidth()){
+			posicaoCanoX = larguraDispotivo;
+			posicaoCanoY = random.nextInt(400) - 200;
+		}
 		/*Aplica evento de toque de tela*/
 		boolean toqueTela = Gdx.input.justTouched();
 		if(toqueTela){
@@ -70,10 +79,9 @@ public class Jogo extends ApplicationAdapter {
 		batch.draw(fundo, 0, 0, larguraDispotivo, alturaDispotivo);
 		batch.draw(passaros[(int) variacao], 30, posicaoPassaroY);
 
-		//posicaoCanoX--;
+		batch.draw(canoBaixo, posicaoCanoX, alturaDispotivo / 2 - canoBaixo.getHeight() - espacoEntreCanos / 2 + posicaoCanoY);
+		batch.draw(canoTopo, posicaoCanoX, alturaDispotivo / 2 + espacoEntreCanos / 2 + posicaoCanoY);
 
-		batch.draw(canoBaixo, posicaoCanoX - 100, alturaDispotivo / 2 - canoBaixo.getHeight() - espacoEntreCanos / 2);
-		batch.draw(canoTopo, posicaoCanoX - 100, alturaDispotivo / 2 + espacoEntreCanos / 2);
 		batch.end();
 	}
 
@@ -91,6 +99,7 @@ public class Jogo extends ApplicationAdapter {
 
 	private void inicializarObjetos(){
 		batch = new SpriteBatch();
+		random = new Random();
 
 		larguraDispotivo = Gdx.graphics.getWidth();
 		alturaDispotivo = Gdx.graphics.getHeight();
