@@ -18,6 +18,8 @@ public class Jogo extends ApplicationAdapter {
 	private float larguraDispotivo;
 	private float alturaDispotivo;
 	private float variacao = 0;
+	private float gravidade = 0;
+	private float posicaoPassaroY = 0;
 
 
 	@Override
@@ -35,6 +37,8 @@ public class Jogo extends ApplicationAdapter {
 
 		larguraDispotivo = Gdx.graphics.getWidth();
 		alturaDispotivo = Gdx.graphics.getHeight();
+
+		posicaoPassaroY = alturaDispotivo / 2;
 	}
 
 	@Override
@@ -45,11 +49,22 @@ public class Jogo extends ApplicationAdapter {
 			variacao = 0;
 		}
 
+		/*Aplica evento de toque de tela*/
+		boolean toqueTela = Gdx.input.justTouched();
+		if(toqueTela){
+			gravidade = -20;
+		}
+
+		/* Aplica gravidade no pássaro */
+		if(posicaoPassaroY > 0 || toqueTela) {
+			posicaoPassaroY = posicaoPassaroY - gravidade;
+		}
 		batch.draw(fundo, 0, 0, larguraDispotivo, alturaDispotivo);
-		batch.draw(passaros[(int) variacao], 30, alturaDispotivo / 2);
+		batch.draw(passaros[(int) variacao], 30, posicaoPassaroY);
 
 		variacao += Gdx.graphics.getDeltaTime() * 10;
 
+		gravidade++;
 		movimentoX++;
 		movimentoY++;
 
