@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +14,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
 
@@ -60,6 +66,11 @@ public class Jogo extends ApplicationAdapter {
 	//Objeto salvar pontuação
 	Preferences preferences;
 
+	//Objeto para câmera
+	private OrthographicCamera orthographicCamera;
+	private Viewport viewport;
+	private final float VIRTUAL_WIDTH = 720;
+	private final float VIRTUAL_HEIGHT = 1280;
 
 	@Override
 	public void create () {
@@ -71,6 +82,9 @@ public class Jogo extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		//Limpar frames anteriores
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
 		verificarEstadoJodo();
 		validarPontos();
 		desenharTexturas();
@@ -186,6 +200,8 @@ public class Jogo extends ApplicationAdapter {
 	}
 
 	private void desenharTexturas(){
+		batch.setProjectionMatrix(orthographicCamera.combined);
+
 		batch.begin();
 
 		batch.draw(fundo, 0, 0, larguraDispotivo, alturaDispotivo);
@@ -225,11 +241,11 @@ public class Jogo extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		random = new Random();
 
-		larguraDispotivo = Gdx.graphics.getWidth();
-		alturaDispotivo = Gdx.graphics.getHeight();
+		larguraDispotivo = VIRTUAL_WIDTH;
+		alturaDispotivo = VIRTUAL_HEIGHT;
 		posicaoPassaroY = alturaDispotivo / 2;
 		posicaoCanoX = larguraDispotivo;
-		espacoEntreCanos = 250;
+		espacoEntreCanos = 310;
 
 		//Configuração dos textos
 		textoPontuacao = new BitmapFont();
@@ -258,6 +274,16 @@ public class Jogo extends ApplicationAdapter {
 		//Configura preferências dos objetos
 		preferences = Gdx.app.getPreferences("flappBird");
 		pontuacaoMaxima = preferences.getInteger("pontuacaoMaxima", 0);
+
+		//Configurção da câmera;
+		orthographicCamera = new OrthographicCamera();
+		orthographicCamera.position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
+		viewport = new StretchViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, orthographicCamera);
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		viewport.update(width, height);
 	}
 
 	private void validarPontos() {
